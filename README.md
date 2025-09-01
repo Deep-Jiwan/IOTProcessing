@@ -1,6 +1,7 @@
 # IOTProcessing
 
 This repository contains an end-to-end IoT data pipeline for collecting, processing, and storing sensor data using AWS and on-premises components.
+Currently, this pipeline uses simulated sensor nodes using Python, but since it is using standard MQTT, it should work just fine with actual sensor nodes
 
 ## Overview
 - **On-Prem/Sensor-Node**: Python code and Docker setup for sensor devices. Publishes sensor data to AWS IoT Core using MQTT and device certificates.
@@ -15,16 +16,16 @@ This repository contains an end-to-end IoT data pipeline for collecting, process
 
 ## Usage
 1. **Sensor Node Setup**:
-   - Place device certificates in `On-Prem/Sensor-Node/certs/` (do not upload to GitHub).
+   - Place device certificates in `On-Prem/Sensor-Node/certs/` 
    - Build and run the sensor node Docker containers using `docker-compose`.
 2. **AWS Setup**:
-   - Deploy Lambda functions and configure IAM policies as per the templates in `AWS/`.
+   - Deploy Lambda functions and configure IAM policies as per the templates in `AWS/`. Make sure to replace the ARN with your specific resources
    - Set up IoT Core rules to forward messages to SQS.
 3. **On-Prem Monitoring**:
-   - Use `On-Prem/docker-compose.yaml` to start InfluxDB, Grafana, VPN, and Cloudflared for local data access and visualization.
+   - Use `On-Prem/docker-compose.yaml` to start InfluxDB, Grafana, VPN, and Cloudflared for local data access and visualisation.
+   - Make sure to expose the InfluxDb via HTTPS for AWS Lambda to POST data to it. 
 
 ## Security
-- **Never upload certificates, private keys, or secrets to GitHub.**
 - Use environment variables or `.env` files for sensitive configuration.
 
 ## Requirements
@@ -34,3 +35,4 @@ This repository contains an end-to-end IoT data pipeline for collecting, process
 
 ---
 For details, see the code and configuration files in each folder.
+More documentation to come
