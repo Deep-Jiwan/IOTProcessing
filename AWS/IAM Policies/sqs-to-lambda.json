@@ -1,0 +1,15 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AWSLambdaSQSPollerExecutionRole",
+            "Effect": "Allow",
+            "Action": [
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+                "sqs:ReceiveMessage"
+            ],
+            "Resource": "arn:aws:sqs:ap-south-1:010526243952:*"
+        }
+    ]
+}

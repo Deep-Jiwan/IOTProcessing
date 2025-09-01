@@ -1,0 +1,20 @@
+# structure
+
+{
+  "deviceId": {
+    "S": "lb-energy"
+  },
+  "timestamp": {
+    "N": "1756456709"
+  },
+  "location": {
+    "S": "lobby"
+  },
+  "status": {
+    "S": "offline"
+  }
+}
+
+# partition key : deviceId
+# sort key :      timestamp
+# table class:    standard

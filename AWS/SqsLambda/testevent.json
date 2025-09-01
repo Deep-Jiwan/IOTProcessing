@@ -1,0 +1,29 @@
+{
+  "Records": [
+    {
+      "messageId": "1",
+      "receiptHandle": "handle1",
+      "body": "{\"deviceId\": \"bd-light\", \"sensor\": \"light\", \"value\": 318, \"timestamp\": 1756368689, \"location\": \"bedroom\"}"
+    },
+    {
+      "messageId": "2",
+      "receiptHandle": "handle2",
+      "body": "{\"deviceId\": \"ent-motion\", \"sensor\": \"motion\", \"value\": 0, \"timestamp\": 1756368690, \"location\": \"entrance\"}"
+    },
+    {
+      "messageId": "3",
+      "receiptHandle": "handle3",
+      "body": "{\"deviceId\": \"ent-door\", \"status\": \"offline\", \"timestamp\": 1756452872, \"location\": \"entrance\"}"
+    },
+    {
+      "messageId": "4",
+      "receiptHandle": "handle4",
+      "body": "{\"deviceId\": \"lb-light\", \"topics\": [\"myhome/status/lobby/light\", \"myhome/telemetry/lobby/light\"], \"location\": \"lobby\", \"timestamp\": 1756434149}"
+    },
+    {
+      "messageId": "5",
+      "receiptHandle": "handle5",
+      "body": "{\"deviceId\": \"bd-temperature\", \"sensor\": \"temperature\", \"value\": 18.73, \"timestamp\": 1756454900, \"location\": \"bedroom\"}"
+    }
+  ]
+}

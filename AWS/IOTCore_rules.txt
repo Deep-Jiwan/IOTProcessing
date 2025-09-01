@@ -1,0 +1,19 @@
+SELECT * FROM 'myhome/#'
+
+# selects all mqtt messages sent to myhome topic and forward to sqs service
+
+# all mqtt topics:
+/*
+myhome/telemetry/#
+myhome/status/#
+myhome/all-devices
+
+
+Devices Summary:
+{entrance,ent}: 15|temp, 30|door, 10|motion 30|energy
+{lobby,lb}: 10|temp 10|humidity 60|light 30|energy
+{bedroom,bd}: 10|temp 10|humidity 60|light 30|energy
+
+{location,id}: frequency|sensortype
+
+*/

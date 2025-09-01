@@ -1,0 +1,193 @@
+services:
+  # ---------- ENTRANCE (ent): temp, door, motion, energy ----------
+  sensor-temperature-entrance:
+    build: .
+    image: sensor-node:latest # link for the image if not built locally
+    container_name: sensor-temperature-entrance
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: temperature
+      FREQ: "15"
+      RANGE: "20,30"
+      LOCATION: entrance
+      ID: ent
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-door-entrance:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-door-entrance
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: door
+      FREQ: "30"
+      LOCATION: entrance
+      ID: ent
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-motion-entrance:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-motion-entrance
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: motion
+      FREQ: "10"
+      LOCATION: entrance
+      ID: ent
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-energy-entrance:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-energy-entrance
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: energy
+      FREQ: "30"
+      RANGE: "0.1,1.5"
+      LOCATION: entrance
+      ID: ent
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  # ---------- LOBBY (lb): temp, humidity, light, energy ----------
+  sensor-temperature-lobby:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-temperature-lobby
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: temperature
+      FREQ: "10"
+      RANGE: "24,27"
+      LOCATION: lobby
+      ID: lb
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-humidity-lobby:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-humidity-lobby
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: humidity
+      FREQ: "10"
+      RANGE: "30,60"
+      LOCATION: lobby
+      ID: lb
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-light-lobby:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-light-lobby
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: light
+      FREQ: "60"
+      RANGE: "200,800"
+      LOCATION: lobby
+      ID: lb
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-energy-lobby:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-energy-lobby
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: energy
+      FREQ: "30"
+      RANGE: "0.2,2.0"
+      LOCATION: lobby
+      ID: lb
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  # ---------- BEDROOM (bd): temp, humidity, light, energy ----------
+  sensor-temperature-bedroom:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-temperature-bedroom
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: temperature
+      FREQ: "10"
+      RANGE: "18,23"
+      LOCATION: bedroom
+      ID: bd
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-humidity-bedroom:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-humidity-bedroom
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: humidity
+      FREQ: "10"
+      RANGE: "30,55"
+      LOCATION: bedroom
+      ID: bd
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-light-bedroom:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-light-bedroom
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: light
+      FREQ: "60"
+      RANGE: "50,400"
+      LOCATION: bedroom
+      ID: bd
+    volumes:
+      - /path/to/certs:/app/certs:ro
+
+  sensor-energy-bedroom:
+    build: .
+    image: sensor-node:latest
+    container_name: sensor-energy-bedroom
+    restart: unless-stopped
+    environment:
+      CERTS_DIR: /app/certs
+      AWS_IOT_ENDPOINT: aws.iot.ap-south-1.amazonaws.com
+      SENSOR_TYPE: energy
+      FREQ: "30"
+      RANGE: "0.05,1.0"
+      LOCATION: bedroom
+      ID: bd
+    volumes:
+      - /path/to/certs:/app/certs:ro

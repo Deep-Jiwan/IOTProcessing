@@ -1,0 +1,62 @@
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    restart: always
+    ports:
+      - "8086:8086"  # InfluxDB default port
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: redacted
+      DOCKER_INFLUXDB_INIT_PASSWORD: redacted
+      DOCKER_INFLUXDB_INIT_ORG: redacted
+      DOCKER_INFLUXDB_INIT_BUCKET: redacted
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: always
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN} # define in .env file
+    depends_on:
+      - influxdb
+
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "8090:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=redacted
+      - GF_SECURITY_ADMIN_PASSWORD=redacted
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - influxdb
+
+  services:
+    tailscale-vpn:
+      image: tailscale/tailscale:latest
+      container_name: tailscale-vpn
+      hostname: raspberrypi-vpn
+      network_mode: host
+      cap_add:
+        - NET_ADMIN
+        - NET_RAW
+      devices:
+        - /dev/net/tun
+      volumes:
+        - tailscale_vpn_state:/var/lib/tailscale
+      environment:
+        - TS_AUTHKEY=tskey-redacted # <-- your auth key
+      command: tailscaled
+
+
+volumes:
+  influxdb_data:
+  grafana_data:
+  tailscale_vpn_state:
